@@ -33,9 +33,13 @@ public class Meat extends RecipeBook {
     public void addBeefRecipes() {
 
 
-        beefFiles.add(new File("D:\\Users\\Student\\Documents\\BeefRecipes\\RecipeOne"));
-        beefFiles.add(new File("D:\\Users\\Student\\Documents\\BeefRecipes\\RecipeTwo"));
-        beefFiles.add(new File("D:\\Users\\Student\\Documents\\BeefRecipes\\RecipeThree"));
+        beefFiles.add(new File("D:\\Users\\Student\\Desktop\\BeefRecipes\\RecipeOne"));
+        beefFiles.add(new File("D:\\Users\\Student\\Desktop\\BeefRecipes\\RecipeTwo"));
+        beefFiles.add(new File("D:\\Users\\Student\\Desktop\\BeefRecipes\\RecipeThree"));
+
+    }
+
+    public void addPorkRecipes() {
 
     }
 

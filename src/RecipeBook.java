@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,6 +9,27 @@ public class RecipeBook {
 
     private String randomFile;
     private Random rand = new Random();
+
+
+    public void createFiles(ArrayList<File> arrays) {
+
+        for (File file : arrays) {
+
+            String temp = String.valueOf(arrays);
+            try {
+                FileWriter writer = new FileWriter(temp + ".txt");
+                Writer output = new BufferedWriter(writer);
+                output.write(file.getName());
+                output.close();
+
+            } catch (IOException e) {
+                System.out.println("File Creation Unsuccessful");
+                e.printStackTrace();
+            }
+
+        }
+
+    }
 
 
     public String randFile(ArrayList<File> recipes) {

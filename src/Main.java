@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -12,11 +11,12 @@ public class Main {
     private String input;
     private Meat readMeatRecipes = new Meat();
     private Veg readVegRecipes = new Veg();
+    private ArrayList<Meat> recipes;
 
     ArrayList<File> chickenFiles = readMeatRecipes.getChickenList();
     ArrayList<File> beefFiles = readMeatRecipes.getBeefList();
     ArrayList<File> porkFiles = readMeatRecipes.getPorkList();
-    
+
     public static void main(String[] args) throws IOException, InterruptedException {
 
         Main main = new Main();
@@ -25,8 +25,27 @@ public class Main {
 
     }
 
+    public void writeToFile() {
 
-    public void createDirectory() {
+
+        for (Meat file : recipes) {
+            String temp = "";
+            try {
+                FileWriter writer = new FileWriter(temp + ".txt");
+                Writer output = new BufferedWriter(writer);
+                output.write(String.valueOf(file.getChickenList()));
+                output.close();
+
+            } catch (IOException e) {
+                System.out.println("File Creation Unsuccessful");
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+   /* public void createDirectory() {
 
 
         try {
@@ -86,11 +105,9 @@ public class Main {
         }
 
 
-    }
+    }*/
 
     public void mainMenu() throws IOException, InterruptedException {
-        createDirectory();
-        createRecipeFiles();
         System.out.println("\n");
         System.out.println("===================================================");
         System.out.println("====== Welcome to Tamara's Recipe Generator! ======");
