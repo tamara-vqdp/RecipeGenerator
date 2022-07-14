@@ -120,7 +120,7 @@ public class Main {
 
         switch (input) {
             case "1":
-                displayMeatRecipes();
+                displayMeatOptions();
                 break;
 
             case "2":
@@ -135,14 +135,14 @@ public class Main {
 
     }
 
-    public void displayMeatRecipes() throws IOException, InterruptedException {
+    public void displayMeatOptions() throws IOException, InterruptedException {
 
         System.out.println("\nPlease Choose A Meat Option");
 
         System.out.println("""
                 1: Chicken\s
                 2: Beef
-                3: Lamb
+                3: Pork
                 4: Back To Food Choices
                 """);
 
@@ -177,8 +177,8 @@ public class Main {
         System.out.println("Finding Recipe....\n");
         Thread.sleep(2000);
         readMeatRecipes.getChickenRecipes();
-        Thread.sleep(700);
-        displayMeatRecipes();
+        Thread.sleep(500);
+        displayMeatOptions();
     }
 
     public void displayBeefRecipes() throws IOException, InterruptedException {
@@ -186,12 +186,17 @@ public class Main {
         System.out.println("Finding Recipe....\n");
         Thread.sleep(2000);
         readMeatRecipes.getBeefRecipes();
-        Thread.sleep(200);
-        displayMeatRecipes();
+        Thread.sleep(500);
+        displayMeatOptions();
     }
 
-    public void displayPorkRecipes() {
-        System.out.println("Nothing Here Yet");
+    public void displayPorkRecipes() throws InterruptedException, IOException {
+        System.out.println("\nLunch Time!");
+        System.out.println("Finding Recipe....\n");
+        Thread.sleep(2000);
+        readMeatRecipes.getPorkRecipes();
+        Thread.sleep(500);
+        displayMeatOptions();
     }
 
     public void displayVegRecipes() {
