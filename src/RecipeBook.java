@@ -7,6 +7,14 @@ public class RecipeBook {
     private String randomFile;
     private Random rand = new Random();
 
+    public static void main(String[] args) {
+        RecipeBook rp = new RecipeBook();
+        try {
+            rp.createFiles2(rp.getFileName2("D:\\Users\\Student\\Desktop\\ChickenRecipes"));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
     
 
     public File[] getFileName2(String file) {
@@ -86,7 +94,9 @@ public class RecipeBook {
             try {
                 FileWriter writer = new FileWriter(temp);
                 Writer output = new BufferedWriter(writer);
-              output.write(readRecipes(temp));
+                for(int i = 0; i < 2; i++) {
+                    output.write("hello" + "\n");
+                }
                 output.close();
                 System.out.println("files written");
 
@@ -94,6 +104,9 @@ public class RecipeBook {
                 System.out.println("File Creation Unsuccessful");
                 e.printStackTrace();
             }
+
+            //load the files into intellij through a cloud system
+            //google drive, dropbox, 
 
         }
 
