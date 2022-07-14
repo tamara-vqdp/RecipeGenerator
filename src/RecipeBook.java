@@ -29,7 +29,7 @@ public class RecipeBook {
         String line;
         while ((line = br.readLine()) != null) {
 
-            Thread.sleep(700);
+            Thread.sleep(200);
 
             System.out.println(line);
 
