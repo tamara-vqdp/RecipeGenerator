@@ -10,12 +10,8 @@ public class Main {
     private final Scanner scanner = new Scanner(System.in);
     private String input;
     private Meat readMeatRecipes = new Meat();
-    private Veg readVegRecipes = new Veg();
-    private ArrayList<Meat> recipes;
 
-    ArrayList<File> chickenFiles = readMeatRecipes.getChickenList();
-    ArrayList<File> beefFiles = readMeatRecipes.getBeefList();
-    ArrayList<File> porkFiles = readMeatRecipes.getPorkList();
+
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -25,89 +21,9 @@ public class Main {
 
     }
 
-    public void writeToFile() {
-
-
-        for (Meat file : recipes) {
-            String temp = "";
-            try {
-                FileWriter writer = new FileWriter(temp + ".txt");
-                Writer output = new BufferedWriter(writer);
-                output.write(String.valueOf(file.getChickenList()));
-                output.close();
-
-            } catch (IOException e) {
-                System.out.println("File Creation Unsuccessful");
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-
-   /* public void createDirectory() {
-
-
-        try {
-
-            Path pathOne = Paths.get("D:\\Users\\Student\\Documents\\ChickenRecipes");
-            Path pathTwo = Paths.get("D:\\Users\\Student\\Documents\\BeefRecipes");
-            Path pathThree = Paths.get("D:\\Users\\Student\\Documents\\PorkRecipes");
-            Path pathFour = Paths.get("D:\\Users\\Student\\Documents\\VegRecipes");
-            Path pathFive = Paths.get("D:\\Users\\Student\\Documents\\VeganRecipes");
-
-            Files.createDirectories(pathOne);
-            Files.createDirectories(pathTwo);
-            Files.createDirectories(pathThree);
-            Files.createDirectories(pathFour);
-            Files.createDirectories(pathFive);
-
-
-            System.out.println("Directories Created For Recipe Management!");
-
-            //Files.createDirectory(path);
-
-        } catch (IOException e) {
-            System.err.println("Failed to create directory!" + e.getMessage());
-        }
-    }
-
-    public void createRecipeFiles() {
-        String dirName1 = "D:\\Users\\Student\\Documents\\ChickenRecipes\\";
-        String dirName2 = "D:\\Users\\Student\\Documents\\BeefRecipes\\";
-        String dirName3 = "D:\\Users\\Student\\Documents\\PorkRecipes\\";
-        String dirName4 = "D:\\Users\\Student\\Documents\\VegRecipes\\";
-        String dirName5 = "D:\\Users\\Student\\Documents\\VeganRecipes\\";
-        String[] files = {"RecipeOne.txt", "RecipeTwo.txt", "RecipeThree.txt"};
-
-
-        try{
-
-            for(int i = 0; i < files.length; i++) {
-                File file1 = new File(dirName1 + files[i]);
-                File file2 = new File(dirName2 + files[i]);
-                File file3 = new File(dirName3 + files[i]);
-                File file4 = new File(dirName4 + files[i]);
-                File file5 = new File(dirName5 + files[i]);
-
-                file1.createNewFile();
-                file2.createNewFile();
-                file3.createNewFile();
-                file4.createNewFile();
-                file5.createNewFile();
-
-
-            }
-            System.out.println("Files Created For Recipe Storage!");
-
-        }catch(Exception e){
-            System.out.println("Could not create file");
-        }
-
-
-    }*/
 
     public void mainMenu() throws IOException, InterruptedException {
+
         System.out.println("\n");
         System.out.println("===================================================");
         System.out.println("====== Welcome to Tamara's Recipe Generator! ======");
@@ -185,7 +101,6 @@ public class Main {
         }
 
     }
-
 
 
     public void displayChickenRecipes() throws IOException, InterruptedException {
