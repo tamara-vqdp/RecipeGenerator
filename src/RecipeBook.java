@@ -19,6 +19,7 @@ public class RecipeBook {
         return randomFile;
     }
 
+
     public void readRecipes(String randomRecipe) throws IOException, InterruptedException {
 
         BufferedReader br = new BufferedReader(new FileReader(randomRecipe + ".txt"));
@@ -26,7 +27,7 @@ public class RecipeBook {
         String line;
         while ((line = br.readLine()) != null) {
 
-            Thread.sleep(200);
+            Thread.sleep(50);
 
             System.out.println(line);
 
