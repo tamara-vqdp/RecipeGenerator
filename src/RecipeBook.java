@@ -1,12 +1,11 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class RecipeBook {
 
-    private String randomFile;
-    private Random rand = new Random();
+
+
 
 
     public File[] getFileName(String file) {
@@ -19,14 +18,14 @@ public class RecipeBook {
 
         //for loop goes through each value of the array
         // value being the files in the folder
-        for (int i = 0; i < listOfFiles.length; i++) {
+        for (File listOfFile : listOfFiles) {
             //checks if item in array is a file
-            if (listOfFiles[i].isFile()) {
+            if (listOfFile.isFile()) {
                 //gets the name of each file in array
+                listOfFile.getName();
             }
             //assign this value to temp
-            listOfFiles[i].getName();
-
+            String temp = listOfFile.getName();
         }
         //return value of temp
         return listOfFiles;
@@ -38,18 +37,18 @@ public class RecipeBook {
 
         //for each loop to go through every file in the array
         for (File file2 : arrays) {
-            //assign filename to a string to pass it through filewriter method
+            //assign filename to a string to pass it through fileWriter method
             String getFileName = file2.getName();
 
             //declare variable index to go through chicken files array
             // and write each recipe to matching file name
-            int index = 0;
+            int index;
             //declare array to grab return value from read recipes method
             String[] array;
             try {
                 File f = new File(filePath + "\\" + getFileName);
                 FileWriter writer = new FileWriter(f);
-                Writer output = new BufferedWriter(writer);
+                BufferedWriter output = new BufferedWriter(writer);
 
 
                 //check for filename
@@ -60,21 +59,21 @@ public class RecipeBook {
                     array = readRecipes(selectingRecipesToRead(recipeList, index));
                     for (String str : array) {
                         output.write(str);
-                        ((BufferedWriter) output).newLine();
+                        output.newLine();
                     }
                 } else if (getFileName.contains(fileNameTwo)) {
                     index = 1;
                     array = readRecipes(selectingRecipesToRead(recipeList, index));
                     for (String str : array) {
                         output.write(str);
-                        ((BufferedWriter) output).newLine();
+                        output.newLine();
                     }
                 } else if (getFileName.contains(fileNameThree)) {
                     index = 2;
                     array = readRecipes(selectingRecipesToRead(recipeList, index));
                     for (String str : array) {
                         output.write(str);
-                        ((BufferedWriter) output).newLine();
+                        output.newLine();
                     }
                 }
                 output.close();
@@ -86,7 +85,7 @@ public class RecipeBook {
             }
 
             //load the files into intellij through a cloud system
-            //google drive, dropbox,
+            //Google Drive, dropbox,
 
         }
 
@@ -101,11 +100,11 @@ public class RecipeBook {
     }
 
 //this method will read the recipe from my computer
-    //this method will then be used to write to the files created 
-    public String[] readRecipes(String selectedFile) throws IOException, InterruptedException {
+    //this method will then be used to write to the files created
+    public String[] readRecipes(String selectedFile) throws IOException {
 
         ArrayList<String> listOfStrings
-                = new ArrayList<String>();
+                = new ArrayList<>();
 
         BufferedReader br = new BufferedReader(new FileReader(selectedFile + ".txt"));
 
@@ -126,32 +125,44 @@ public class RecipeBook {
 
     public String randomFile(String directoryPath) {
         Random rand = new Random();
+
+        //Create an array of the files within the given directory using File.listFiles().
         File dir = new File(directoryPath);
         File[] files = dir.listFiles();
-        File file = files[rand.nextInt(files.length)];
-        String filename = file.toString();
-        return filename;
+        //use random method and the bound, in this case, is the amount of files in the array
+        File file = null;
+        if (files != null) {
+            file = files[rand.nextInt(files.length)];
+        }
+        //create variable to get the random file name in string format
+        //return variable to be used in another method
+        String fileName = "";
+        if (file != null) {
+            fileName = file.toString();
+        }
+
+        return fileName;
 
     }
 
-    public void readRandomRecipes(String selectedFile) throws IOException, InterruptedException {
+    public void readRandomRecipes(String selectedFile) throws IOException {
 
-        ArrayList<String> listOfStrings
-                = new ArrayList<String>();
+        ArrayList<String> list
+                = new ArrayList<>();
 
         BufferedReader br = new BufferedReader(new FileReader(selectedFile));
 
         String line = br.readLine();
         while (line != null) {
 
-            listOfStrings.add(line);
+           list.add(line);
             line = br.readLine();
 
 
         }
 
         String[] array
-                = listOfStrings.toArray(new String[0]);
+                = list.toArray(new String[0]);
 
         for(String str : array) {
             System.out.println(str);

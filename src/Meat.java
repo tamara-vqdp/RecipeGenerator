@@ -1,17 +1,15 @@
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Meat extends RecipeBook {
 
-    public ArrayList<File> chickenFiles = new ArrayList<>();
+    private ArrayList<File> chickenFiles = new ArrayList<>();
     private ArrayList<File> beefFiles = new ArrayList<>();
     private ArrayList<File> porkFiles = new ArrayList<>();
 
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         Meat m = new Meat();
         m.creatingChickenFiles();
     }
@@ -57,9 +55,7 @@ public class Meat extends RecipeBook {
         //surround with try catch to avoid crashing and catch the exception instead
         try {
             super.createFiles(super.getFileName(filepath), chickenFiles, directoryPath, fileOne, fileTwo, fileThree);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -78,9 +74,7 @@ public class Meat extends RecipeBook {
         String directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\BeefFiles";
         try {
             super.createFiles(super.getFileName(filepath), porkFiles, directoryPath, fileOne, fileTwo, fileThree);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -89,41 +83,6 @@ public class Meat extends RecipeBook {
 
     }
 
-    public String randomFile(String directoryPath) {
-        Random rand = new Random();
-        File dir = new File(directoryPath);
-        File[] files = dir.listFiles();
-        File file = files[rand.nextInt(files.length)];
-        String filename = file.toString();
-        return filename;
-
-    }
-
-    public void readRandomRecipes(String selectedFile) throws IOException, InterruptedException {
-
-        ArrayList<String> listOfStrings
-                = new ArrayList<String>();
-
-        BufferedReader br = new BufferedReader(new FileReader(selectedFile));
-
-        String line = br.readLine();
-        while (line != null) {
-
-            listOfStrings.add(line);
-            line = br.readLine();
-
-
-        }
-
-        String[] array
-                = listOfStrings.toArray(new String[0]);
-
-        for(String str : array) {
-            System.out.println(str);
-        }
-
-
-    }
 
 
 }
