@@ -9,7 +9,7 @@ public class Meat extends RecipeBook {
     private ArrayList<File> porkFiles = new ArrayList<>();
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         Meat m = new Meat();
         m.createFiles2(m.getFileName2("D:\\Users\\Student\\Desktop\\ChickenRecipes"));
 
@@ -79,22 +79,42 @@ public class Meat extends RecipeBook {
     }
 
 
-    public void createFiles2(File[] arrays) throws InterruptedException {
+    public void createFiles2(File[] arrays) throws InterruptedException, IOException {
 
 
         for (File file2 : arrays) {
             String temp = file2.getName();
+            int index = 0;
+            String[] array = readRecipes2(randFile2(chickenFiles, index));
             try {
                 FileWriter writer = new FileWriter(temp);
                 Writer output = new BufferedWriter(writer);
-                String[] array = readRecipes2(randFile2(chickenFiles, 0));
+
                 if (temp.contains("Chicken-Curry.txt")) {
+                    index = 0;
+                    array = readRecipes2(randFile2(chickenFiles, index));
                     for (String str : array) {
                         output.write(str);
                         ((BufferedWriter) output).newLine();
                     }
-                    System.out.println("file written");
+                }
 
+                else if(temp.contains("Honey-Garlic-Chicken.txt")) {
+                    index = 1;
+                   array = readRecipes2(randFile2(chickenFiles, index));
+                    for(String str: array) {
+                        output.write(str);
+                        ((BufferedWriter) output).newLine();
+                    }
+                }
+
+                else if(temp.contains("Last-Minute-Chicken.txt")) {
+                    index = 2;
+                    array = readRecipes2(randFile2(chickenFiles, index));
+                    for(String str: array) {
+                        output.write(str);
+                        ((BufferedWriter) output).newLine();
+                    }
                 }
                 output.close();
                 System.out.println("files created");
