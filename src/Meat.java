@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Meat extends RecipeBook {
@@ -12,7 +13,7 @@ public class Meat extends RecipeBook {
 
     public static void main(String[] args) {
         Meat m = new Meat();
-        System.out.println("hey");
+        m.randomFile();
     }
 
 
@@ -62,6 +63,7 @@ public class Meat extends RecipeBook {
         }
 
     }
+    //C:\Users\Student\IdeaProjects\RecipeGenerator\.idea\ChickenFiles
 
     public void creatingPorkFiles() {
 
@@ -80,23 +82,42 @@ public class Meat extends RecipeBook {
             throw new RuntimeException(e);
         }
     }
-    @Override
-    public String selectingRecipesToRead(ArrayList<File> recipes, int index) {
-        //using method to add to arraylist
-        String fileSelection;
-        //using declared variable above to assign arraylist index to string formation
-        fileSelection = String.valueOf(recipes.get(index));
 
-        return fileSelection;
+    public String randomFile() {
+        Random rand = new Random();
+        File[] files = new File( "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\ChickenFiles" ).listFiles();
+        File file = files[rand.nextInt(files.length)];
+        String filename = file.getName();
+        System.out.println(filename);
+        return filename;
+
     }
 
+    public void readRandomRecipes(String selectedFile) throws IOException, InterruptedException {
+
+        ArrayList<String> listOfStrings
+                = new ArrayList<String>();
+
+        BufferedReader br = new BufferedReader(new FileReader(selectedFile));
+
+        String line = br.readLine();
+        while (line != null) {
+
+            listOfStrings.add(line);
+            line = br.readLine();
 
 
+        }
+
+        String[] array
+                = listOfStrings.toArray(new String[0]);
+
+        for(String str : array) {
+            System.out.println(str);
+        }
 
 
-
-
-
+    }
 
 
 }
