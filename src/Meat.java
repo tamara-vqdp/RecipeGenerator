@@ -11,9 +11,9 @@ public class Meat extends RecipeBook {
     private ArrayList<File> porkFiles = new ArrayList<>();
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Meat m = new Meat();
-        m.randomFile();
+        m.creatingChickenFiles();
     }
 
 
@@ -52,10 +52,11 @@ public class Meat extends RecipeBook {
 
         //assign variable to path to be used in parent class method getFileName
         String filepath = "D:\\Users\\Student\\Desktop\\ChickenRecipes";
+        String directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\ChickenFiles";
 
         //surround with try catch to avoid crashing and catch the exception instead
         try {
-            super.createFiles(super.getFileName(filepath), chickenFiles, fileOne, fileTwo, fileThree);
+            super.createFiles(super.getFileName(filepath), chickenFiles, directoryPath, fileOne, fileTwo, fileThree);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -65,7 +66,7 @@ public class Meat extends RecipeBook {
     }
     //C:\Users\Student\IdeaProjects\RecipeGenerator\.idea\ChickenFiles
 
-    public void creatingPorkFiles() {
+    public void creatingBeefFiles() {
 
         addPorkRecipes();
         String fileOne = "Beef-Stir-Fry";
@@ -74,8 +75,9 @@ public class Meat extends RecipeBook {
 
 
         String filepath = "D:\\Users\\Student\\Desktop\\BeefRecipes";
+        String directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\BeefFiles";
         try {
-            super.createFiles(super.getFileName(filepath), porkFiles, fileOne, fileTwo, fileThree);
+            super.createFiles(super.getFileName(filepath), porkFiles, directoryPath, fileOne, fileTwo, fileThree);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -83,12 +85,16 @@ public class Meat extends RecipeBook {
         }
     }
 
-    public String randomFile() {
+    public void creatingPorkFiles() {
+
+    }
+
+    public String randomFile(String directoryPath) {
         Random rand = new Random();
-        File[] files = new File( "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\ChickenFiles" ).listFiles();
+        File dir = new File(directoryPath);
+        File[] files = dir.listFiles();
         File file = files[rand.nextInt(files.length)];
-        String filename = file.getName();
-        System.out.println(filename);
+        String filename = file.toString();
         return filename;
 
     }
