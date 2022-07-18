@@ -111,7 +111,7 @@ public class Meat extends RecipeBook {
 
     }
 
-   
+
     public String randFile2(ArrayList<File> recipes, int index) {
         addChickenRecipes();
 
@@ -139,12 +139,6 @@ public class Meat extends RecipeBook {
 
         String[] array
                 = listOfStrings.toArray(new String[0]);
-
-        // printing each line of file
-        // which is stored in array
-        /*for (String str : array) {
-            System.out.println(str);
-        }*/
 
         return array;
     }
