@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -81,43 +82,54 @@ public class Meat extends RecipeBook {
 
     public void createFiles2(File[] arrays) throws InterruptedException, IOException {
 
-
+        //for each loop to go through every file in the array
         for (File file2 : arrays) {
-            String temp = file2.getName();
+            //assign filename to a string to pass it through filewriter method
+            String getFileName = file2.getName();
+            String fileName = null;
+
+            //declare variable index to go through chicken files array
+            // and write each recipe to matching file name
             int index = 0;
-            String[] array = readRecipes2(randFile2(chickenFiles, index));
+            //declare array to grab return value from read recipes method
+            String[] array;
+            ArrayList<File> recipeList = null;
             try {
-                FileWriter writer = new FileWriter(temp);
+                FileWriter writer = new FileWriter(getFileName);
                 Writer output = new BufferedWriter(writer);
 
-                if (temp.contains("Chicken-Curry.txt")) {
+
+                //check for filename
+                if (getFileName.contains(fileName)) {
+                    //reassign value of index to corresponding file recipe
                     index = 0;
-                    array = readRecipes2(randFile2(chickenFiles, index));
+                    //reassign array to
+                    array = readRecipes2(randFile2(recipeList, index));
                     for (String str : array) {
                         output.write(str);
                         ((BufferedWriter) output).newLine();
                     }
                 }
 
-                else if(temp.contains("Honey-Garlic-Chicken.txt")) {
+                else if(getFileName.contains(fileName)) {
                     index = 1;
-                   array = readRecipes2(randFile2(chickenFiles, index));
+                   array = readRecipes2(randFile2(recipeList, index));
                     for(String str: array) {
                         output.write(str);
                         ((BufferedWriter) output).newLine();
                     }
                 }
 
-                else if(temp.contains("Last-Minute-Chicken.txt")) {
+                else if(getFileName.contains(fileName)) {
                     index = 2;
-                    array = readRecipes2(randFile2(chickenFiles, index));
+                    array = readRecipes2(randFile2(recipeList, index));
                     for(String str: array) {
                         output.write(str);
                         ((BufferedWriter) output).newLine();
                     }
                 }
                 output.close();
-                System.out.println("files created");
+
 
             } catch (IOException e) {
                 System.out.println("File Creation Unsuccessful");
