@@ -1,8 +1,4 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +6,6 @@ public class Main {
     private final Scanner scanner = new Scanner(System.in);
     private String input;
     private Meat readMeatRecipes = new Meat();
-
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -23,7 +18,6 @@ public class Main {
 
 
     public void mainMenu() throws IOException, InterruptedException {
-
         System.out.println("\n");
         System.out.println("===================================================");
         System.out.println("====== Welcome to Tamara's Recipe Generator! ======");
@@ -53,7 +47,7 @@ public class Main {
 
         switch (input) {
             case "1":
-                displayMeatRecipes();
+                displayMeatOptions();
                 break;
 
             case "2":
@@ -68,14 +62,14 @@ public class Main {
 
     }
 
-    public void displayMeatRecipes() throws IOException, InterruptedException {
+    public void displayMeatOptions() throws IOException, InterruptedException {
 
         System.out.println("\nPlease Choose A Meat Option");
 
         System.out.println("""
                 1: Chicken\s
                 2: Beef
-                3: Lamb
+                3: Pork
                 4: Back To Food Choices
                 """);
 
@@ -108,22 +102,27 @@ public class Main {
         System.out.println("\nLunch Time!");
         System.out.println("Finding Recipe....\n");
         Thread.sleep(2000);
-        readMeatRecipes.getChickenRecipes();
-        Thread.sleep(700);
-        displayMeatRecipes();
+        // readMeatRecipes.getChickenRecipes();
+        Thread.sleep(500);
+        displayMeatOptions();
     }
 
     public void displayBeefRecipes() throws IOException, InterruptedException {
         System.out.println("\nLunch Time!");
         System.out.println("Finding Recipe....\n");
         Thread.sleep(2000);
-        readMeatRecipes.getBeefRecipes();
-        Thread.sleep(200);
-        displayMeatRecipes();
+        //readMeatRecipes.getBeefRecipes();
+        Thread.sleep(500);
+        displayMeatOptions();
     }
 
-    public void displayPorkRecipes() {
-        System.out.println("Nothing Here Yet");
+    public void displayPorkRecipes() throws InterruptedException, IOException {
+        System.out.println("\nLunch Time!");
+        System.out.println("Finding Recipe....\n");
+        Thread.sleep(2000);
+        //readMeatRecipes.getPorkRecipes();
+        Thread.sleep(500);
+        displayMeatOptions();
     }
 
     public void displayVegRecipes() {
@@ -137,6 +136,7 @@ public class Main {
 
 
 }
+
 
 
 

@@ -7,23 +7,13 @@ public class RecipeBook {
     private String randomFile;
     private Random rand = new Random();
 
-    public static void main(String[] args) {
-        RecipeBook rp = new RecipeBook();
-        try {
-            rp.createFiles2(rp.getFileName2("D:\\Users\\Student\\Desktop\\ChickenRecipes"));
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    
 
-    public File[] getFileName2(String file) {
+    public File[] getFileName(String file) {
 
         //get the pathname of any file directory
         File folder = new File(file + "");
         //create array of files to store the folder and its contents
         File[] listOfFiles = folder.listFiles();
-
 
 
         //for loop goes through each value of the array
@@ -32,73 +22,64 @@ public class RecipeBook {
             //checks if item in array is a file
             if (listOfFiles[i].isFile()) {
                 //gets the name of each file in array
-                //assign this value to temp
-                listOfFiles[i].getName();
-
-
             }
+            //assign this value to temp
+            listOfFiles[i].getName();
+
         }
         //return value of temp
         return listOfFiles;
-    }
-
-
-    public String getFileName(String file) {
-
-        //get the pathname of any file directory
-        File folder = new File(file + "");
-        //create array of files to store the folder and its contents
-        File[] listOfFiles = folder.listFiles();
-        String temp = "";
-
-
-        //for loop goes through each value of the array
-        // value being the files in the folder
-        for (int i = 0; i < listOfFiles.length; i++) {
-            //checks if item in array is a file
-            if (listOfFiles[i].isFile()) {
-                //gets the name of each file in array
-                //assign this value to temp
-                temp = listOfFiles[i].getName();
-                System.out.println("File " + i + ": " + temp); // check if iterating through array and getting file names
-            }
-        }
-        //return value of temp
-        return temp;
-    }
-
-    public void createFiles(ArrayList<File> arrays, String temp) throws InterruptedException {
-
-        for (File file : arrays) {
-
-            temp = "";
-            try {
-                FileWriter writer = new FileWriter(temp + ".txt");
-                Writer output = new BufferedWriter(writer);
-                output.write(readRecipes(temp));
-                output.close();
-
-            } catch (IOException e) {
-                System.out.println("File Creation Unsuccessful");
-                e.printStackTrace();
-            }
-
-        }
 
     }
 
-    public void createFiles2(File[] arrays) throws InterruptedException {
+    public void createFiles(File[] arrays) throws InterruptedException, IOException {
 
+        //for each loop to go through every file in the array
         for (File file2 : arrays) {
-            String temp = file2.getName();
+            //assign filename to a string to pass it through filewriter method
+            String getFileName = file2.getName();
+            String fileNameOne = null;
+            String fileNameTwo = null;
+            String fileNameThree = null;
+
+            //declare variable index to go through chicken files array
+            // and write each recipe to matching file name
+            int index = 0;
+            //declare array to grab return value from read recipes method
+            String[] array;
+            ArrayList<File> recipeList = null;
             try {
-                FileWriter writer = new FileWriter(temp);
+                FileWriter writer = new FileWriter(getFileName);
                 Writer output = new BufferedWriter(writer);
-                for(int i = 0; i < 2; i++) {
-                    output.write("hello" + "\n");
+
+
+                //check for filename
+                if (getFileName.contains(fileNameOne)) {
+                    //reassign value of index to corresponding file recipe
+                    index = 0;
+                    //reassign array to
+                    array = readRecipes(selectingRecipesToRead(recipeList, index));
+                    for (String str : array) {
+                        output.write(str);
+                        ((BufferedWriter) output).newLine();
+                    }
+                } else if (getFileName.contains(fileNameTwo)) {
+                    index = 1;
+                    array = readRecipes(selectingRecipesToRead(recipeList, index));
+                    for (String str : array) {
+                        output.write(str);
+                        ((BufferedWriter) output).newLine();
+                    }
+                } else if (getFileName.contains(fileNameThree)) {
+                    index = 2;
+                    array = readRecipes(selectingRecipesToRead(recipeList, index));
+                    for (String str : array) {
+                        output.write(str);
+                        ((BufferedWriter) output).newLine();
+                    }
                 }
                 output.close();
-                System.out.println("files written");
+
 
             } catch (IOException e) {
                 System.out.println("File Creation Unsuccessful");
@@ -106,61 +87,44 @@ public class RecipeBook {
             }
 
             //load the files into intellij through a cloud system
-            //google drive, dropbox, 
+            //google drive, dropbox,
 
         }
 
     }
 
-    public String randFile(ArrayList<File> recipes) {
+    public String selectingRecipesToRead(ArrayList<File> recipes, int index) {
 
-        int index = rand.nextInt(recipes.size());
-        randomFile = String.valueOf(recipes.get(index));
+        String fileSelection;
+        fileSelection = String.valueOf(recipes.get(index));
 
-        return randomFile;
-    }
-
-    public String randFile2(ArrayList<String> recipes) {
-
-        int index = rand.nextInt(recipes.size());
-        randomFile = String.valueOf(recipes.get(index));
-
-        return randomFile;
+        return fileSelection;
     }
 
 
-    public String readRecipes(String recipe) throws IOException, InterruptedException {
+    public String[] readRecipes(String selectedFile) throws IOException, InterruptedException {
 
-        BufferedReader br = new BufferedReader(new FileReader(recipe));
+        ArrayList<String> listOfStrings
+                = new ArrayList<String>();
 
-        String line = "";
-        while (br.readLine() != null) {
+        BufferedReader br = new BufferedReader(new FileReader(selectedFile + ".txt"));
+
+        String line = br.readLine();
+        while (line != null) {
+
+            listOfStrings.add(line);
             line = br.readLine();
 
-            Thread.sleep(200);
 
-            System.out.println(line);
         }
-        return line;
 
-    }
+        String[] array
+                = listOfStrings.toArray(new String[0]);
 
-
-    public String readRecipes2(File[] file) throws IOException, InterruptedException {
-
-        BufferedReader br = new BufferedReader(new FileReader(String.valueOf(file)));
-
-        String line = "";
-        while (br.readLine() != null) {
-            line = br.readLine();
-
-            Thread.sleep(200);
-
-            System.out.println(line);
-        }
-        return line;
-
+        return array;
     }
 
 
 }
+
+
