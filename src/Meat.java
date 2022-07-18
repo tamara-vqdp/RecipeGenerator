@@ -10,6 +10,11 @@ public class Meat extends RecipeBook {
     private ArrayList<File> porkFiles = new ArrayList<>();
 
 
+    public static void main(String[] args) {
+        Meat m = new Meat();
+        System.out.println("hey");
+    }
+
 
     public void addChickenRecipes() {
 
@@ -38,15 +43,48 @@ public class Meat extends RecipeBook {
 
 
     public void creatingChickenFiles() {
+        addChickenRecipes();
+        //assign variable to name of files to be used as parameters in parent class method createFiles
         String fileOne = "Chicken-Curry";
         String fileTwo = "Honey-Garlic-Chicken";
         String fileThree = "Last-Minute-Chicken";
-       
+
+        //assign variable to path to be used in parent class method getFileName
+        String filepath = "D:\\Users\\Student\\Desktop\\ChickenRecipes";
+
+        //surround with try catch to avoid crashing and catch the exception instead
+        try {
+            super.createFiles(super.getFileName(filepath), chickenFiles, fileOne, fileTwo, fileThree);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void creatingPorkFiles() {
+
+        addPorkRecipes();
+        String fileOne = "Beef-Stir-Fry";
+        String fileTwo = "Broccoli-Beef-Braids";
+        String fileThree = "Chilli-Ghetti";
+
+
+        String filepath = "D:\\Users\\Student\\Desktop\\BeefRecipes";
+        try {
+            super.createFiles(super.getFileName(filepath), porkFiles, fileOne, fileTwo, fileThree);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     public String selectingRecipesToRead(ArrayList<File> recipes, int index) {
-        addChickenRecipes();
+        //using method to add to arraylist
         String fileSelection;
+        //using declared variable above to assign arraylist index to string formation
         fileSelection = String.valueOf(recipes.get(index));
 
         return fileSelection;

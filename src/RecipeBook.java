@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -32,7 +33,8 @@ public class RecipeBook {
 
     }
 
-    public void createFiles(File[] arrays, String fileNameOne, String fileNameTwo, String fileNameThree) throws InterruptedException, IOException {
+    //using parameters to get the file names from folder, choose from file from arraylist and pass in name of files
+    public void createFiles(File[] arrays, ArrayList<File> recipeList, String fileNameOne, String fileNameTwo, String fileNameThree) throws InterruptedException, IOException {
 
         //for each loop to go through every file in the array
         for (File file2 : arrays) {
@@ -44,7 +46,6 @@ public class RecipeBook {
             int index = 0;
             //declare array to grab return value from read recipes method
             String[] array;
-            ArrayList<File> recipeList = null;
             try {
                 FileWriter writer = new FileWriter(getFileName);
                 Writer output = new BufferedWriter(writer);
