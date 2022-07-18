@@ -32,15 +32,12 @@ public class RecipeBook {
 
     }
 
-    public void createFiles(File[] arrays) throws InterruptedException, IOException {
+    public void createFiles(File[] arrays, String fileNameOne, String fileNameTwo, String fileNameThree) throws InterruptedException, IOException {
 
         //for each loop to go through every file in the array
         for (File file2 : arrays) {
             //assign filename to a string to pass it through filewriter method
             String getFileName = file2.getName();
-            String fileNameOne = null;
-            String fileNameTwo = null;
-            String fileNameThree = null;
 
             //declare variable index to go through chicken files array
             // and write each recipe to matching file name
