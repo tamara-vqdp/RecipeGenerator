@@ -51,7 +51,6 @@ public class RecipeBook {
                 FileWriter writer = new FileWriter(f);
                 BufferedWriter output = new BufferedWriter(writer);
 
-
                 //check for filename
                 if (getFileName.contains(fileNameOne)) {
                     //reassign value of index to corresponding file recipe
@@ -158,7 +157,8 @@ public class RecipeBook {
         while (line != null) {
 
            list.add(line);
-            line = br.readLine();
+           line = br.readLine();
+
 
 
         }

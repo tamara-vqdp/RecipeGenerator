@@ -11,6 +11,12 @@ public class Vegan extends RecipeBook {
 
     private ArrayList<File> veganFiles = new ArrayList<>();
 
+    public String directoryPath;
+    public String filePath;
+    public String fileOne;
+    public String fileTwo;
+    public String fileThree;
+
 
     public static void main(String[] args) {
         Vegan v = new Vegan();
@@ -28,26 +34,34 @@ public class Vegan extends RecipeBook {
     public void creatingVeganFiles() {
         addVeganFiles();
         //assign variable to name of files to be used as parameters in parent class method createFiles
-        String fileOne = "Caprese-Couscous";
-        String fileTwo = "Puff-Pastry-Vegetable-Tart";
-        String fileThree = "Vegan-Style-Quesadillas";
+        fileOne = "Caprese-Couscous";
+        fileTwo = "Puff-Pastry-Vegetable-Tart";
+        fileThree = "Vegan-Style-Quesadillas";
 
         //assign variable to path to be used in parent class method getFileName
-        String filepath = "D:\\Users\\Student\\Desktop\\VeganRecipes";
-        String directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\VeganFiles";
+        filePath = "D:\\Users\\Student\\Desktop\\VeganRecipes";
+        directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\VeganFiles";
 
         //surround with try catch to avoid crashing and catch the exception instead
         try {
             //use method from parent class to create files
-            createFiles(getFileName(filepath), veganFiles, directoryPath, fileOne, fileTwo, fileThree);
+            createFiles(getFileName(filePath), veganFiles, directoryPath, fileOne, fileTwo, fileThree);
         } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
 
     }
 
+    public void getRandomVeganRecipes() {
 
+        directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\VeganFiles";
+        try {
+            readRandomRecipes(randomFile(directoryPath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+    }
 
 }
 
