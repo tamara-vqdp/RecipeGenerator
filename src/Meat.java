@@ -1,7 +1,6 @@
-import java.io.*;
-import java.lang.reflect.Array;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Meat extends RecipeBook {
 
@@ -9,27 +8,14 @@ public class Meat extends RecipeBook {
     private ArrayList<File> beefFiles = new ArrayList<>();
     private ArrayList<File> porkFiles = new ArrayList<>();
 
+    public String directoryPath;
+    public String filePath;
+    public String fileOne;
+    public String fileTwo;
+    public String fileThree;
 
-    public static void main(String[] args) throws InterruptedException, IOException {
-        Meat m = new Meat();
-        m.createFiles2(m.getFileName2("D:\\Users\\Student\\Desktop\\ChickenRecipes"));
 
-
-    }
-
-    //getters for all meat arrays
-    ArrayList<File> getChickenList() {
-        return chickenFiles;
-    }
-
-    ArrayList<File> getBeefList() {
-        return beefFiles;
-    }
-
-    ArrayList<File> getPorkList() {
-        return porkFiles;
-    }
-
+    //manually adding files from computer directory to arraylist
     public void addChickenRecipes() {
 
         //adding new files to chicken files array
@@ -41,178 +27,112 @@ public class Meat extends RecipeBook {
     public void addBeefRecipes() {
 
 
-        beefFiles.add(new File("D:\\Users\\Student\\Documents\\BeefRecipes\\RecipeOne"));
-        beefFiles.add(new File("D:\\Users\\Student\\Documents\\BeefRecipes\\RecipeTwo"));
-        beefFiles.add(new File("D:\\Users\\Student\\Documents\\BeefRecipes\\RecipeThree"));
+        beefFiles.add(new File("D:\\Users\\Student\\Desktop\\BeefRecipes\\Beef-Stir-Fry"));
+        beefFiles.add(new File("D:\\Users\\Student\\Desktop\\BeefRecipes\\Broccoli-Beef-Braids"));
+        beefFiles.add(new File("D:\\Users\\Student\\Desktop\\BeefRecipes\\Chilli-Ghetti"));
 
     }
 
     public void addPorkRecipes() {
 
-        porkFiles.add(new File("D:\\Users\\Student\\Documents\\PorkRecipes\\RecipeOne"));
-        porkFiles.add(new File("D:\\Users\\Student\\Documents\\PorkRecipes\\RecipeTwo"));
-        porkFiles.add(new File("D:\\Users\\Student\\Documents\\PorkRecipes\\RecipeThree"));
-
-    }
-
-    public File[] getFileName2(String file) {
-
-        //get the pathname of any file directory
-        File folder = new File(file + "");
-        //create array of files to store the folder and its contents
-        File[] listOfFiles = folder.listFiles();
-
-
-        //for loop goes through each value of the array
-        // value being the files in the folder
-        for (int i = 0; i < listOfFiles.length; i++) {
-            //checks if item in array is a file
-            if (listOfFiles[i].isFile()) {
-                //gets the name of each file in array
-            }
-            //assign this value to temp
-            listOfFiles[i].getName();
-
-        }
-        //return value of temp
-        return listOfFiles;
+        porkFiles.add(new File("D:\\Users\\Student\\Desktop\\PorkRecipes\\Creamy-Garlic-Pork-Chops"));
+        porkFiles.add(new File("D:\\Users\\Student\\Desktop\\PorkRecipes\\Garlic-Butter-Pork-Bites"));
+        porkFiles.add(new File("D:\\Users\\Student\\Desktop\\PorkRecipes\\Mongolian-Pork"));
 
     }
 
 
-    public void createFiles2(File[] arrays) throws InterruptedException, IOException {
-
-        //for each loop to go through every file in the array
-        for (File file2 : arrays) {
-            //assign filename to a string to pass it through filewriter method
-            String getFileName = file2.getName();
-            String fileName = null;
-
-            //declare variable index to go through chicken files array
-            // and write each recipe to matching file name
-            int index = 0;
-            //declare array to grab return value from read recipes method
-            String[] array;
-            ArrayList<File> recipeList = null;
-            try {
-                FileWriter writer = new FileWriter(getFileName);
-                Writer output = new BufferedWriter(writer);
-
-
-                //check for filename
-                if (getFileName.contains(fileName)) {
-                    //reassign value of index to corresponding file recipe
-                    index = 0;
-                    //reassign array to
-                    array = readRecipes2(randFile2(recipeList, index));
-                    for (String str : array) {
-                        output.write(str);
-                        ((BufferedWriter) output).newLine();
-                    }
-                }
-
-                else if(getFileName.contains(fileName)) {
-                    index = 1;
-                   array = readRecipes2(randFile2(recipeList, index));
-                    for(String str: array) {
-                        output.write(str);
-                        ((BufferedWriter) output).newLine();
-                    }
-                }
-
-                else if(getFileName.contains(fileName)) {
-                    index = 2;
-                    array = readRecipes2(randFile2(recipeList, index));
-                    for(String str: array) {
-                        output.write(str);
-                        ((BufferedWriter) output).newLine();
-                    }
-                }
-                output.close();
-
-
-            } catch (IOException e) {
-                System.out.println("File Creation Unsuccessful");
-                e.printStackTrace();
-            }
-
-            //load the files into intellij through a cloud system
-            //google drive, dropbox,
-
-        }
-
-    }
-
-
-    public String randFile2(ArrayList<File> recipes, int index) {
+    public void creatingChickenFiles() {
         addChickenRecipes();
+        //assign variable to name of files to be used as parameters in parent class method createFiles
+        fileOne = "Chicken-Curry";
+        fileTwo = "Honey-Garlic-Chicken";
+        fileThree = "Last-Minute-Chicken";
 
-        String randomFile;
-        randomFile = String.valueOf(recipes.get(index));
+        //assign variable to path to be used in parent class method getFileName
+        filePath = "D:\\Users\\Student\\Desktop\\ChickenRecipes";
+        directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\ChickenFiles";
 
-        return randomFile;
-    }
-
-    public String[] readRecipes2(String randomRecipe) throws IOException, InterruptedException {
-
-        ArrayList<String> listOfStrings
-                = new ArrayList<String>();
-
-        BufferedReader br = new BufferedReader(new FileReader(randomRecipe + ".txt"));
-
-        String line = br.readLine();
-        while (line != null) {
-
-            listOfStrings.add(line);
-            line = br.readLine();
-
-
-        }
-
-        String[] array
-                = listOfStrings.toArray(new String[0]);
-
-        return array;
-    }
-
-
-    public void getChickenRecipes() {
-        //calling add recipe method to populate array
-        //this adds bounds for the random value
-        addChickenRecipes();
-        //override parent class method to read chicken files array
-        //and randomise file to print out
-
+        //surround with try catch to avoid crashing and catch the exception instead
         try {
-            readRecipes2(randFile2(chickenFiles, 0));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+            //use method from parent class to create files
+            createFiles(getFileName(filePath), chickenFiles, directoryPath, fileOne, fileTwo, fileThree);
+        } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
-        ;
+
     }
 
-    public void getBeefRecipes() {
+
+    public void creatingBeefFiles() {
+
         addBeefRecipes();
+        fileOne = "Beef-Stir-Fry";
+        fileTwo = "Broccoli-Beef-Braids";
+        fileThree = "Chilli-Ghetti";
+
+
+        filePath = "D:\\Users\\Student\\Desktop\\BeefRecipes";
+        directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\BeefFiles";
         try {
-            readRecipes(randFile(beefFiles));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+            createFiles(getFileName(filePath), beefFiles, directoryPath, fileOne, fileTwo, fileThree);
+        } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void getPorkRecipes() {
+    public void creatingPorkFiles() {
         addPorkRecipes();
+        fileOne = "Creamy-Garlic-Pork-Chops";
+        fileTwo = "Garlic-Butter-Pork-Bites";
+        fileThree = "Mongolian-Pork";
+
+        filePath = "D:\\Users\\Student\\Desktop\\PorkRecipes";
+        directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\PorkFiles";
+
         try {
-            readRecipes(randFile(porkFiles));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+            createFiles(getFileName(filePath), porkFiles, directoryPath, fileOne, fileTwo, fileThree);
+        } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    //call parent method, use directory path from folder created in intelliJ
+    public void getRandomChickenRecipes() {
+
+        directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\ChickenFiles";
+
+        try {
+            readRandomRecipes(randomFile(directoryPath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void getRandomBeefRecipes() {
+
+        directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\BeefFiles";
+
+        try {
+            readRandomRecipes(randomFile(directoryPath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void getRandomPorkRecipes() {
+
+       directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\PorkFiles";
+
+        try {
+            readRandomRecipes(randomFile(directoryPath));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
