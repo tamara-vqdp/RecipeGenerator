@@ -29,7 +29,7 @@ public class Main {
         System.out.println("====== Please Wait.........  ======");
         Thread.sleep(700);
         System.out.println("====== Creating Files..... ======");
-        //calling createfile methods from each class 
+        //calling createfile methods from each class
         meatRecipes.creatingChickenFiles();
         meatRecipes.creatingBeefFiles();
         meatRecipes.creatingPorkFiles();
