@@ -12,6 +12,8 @@ public class Meat extends RecipeBook {
     public static void main(String[] args) {
         Meat m = new Meat();
         m.creatingChickenFiles();
+        m.creatingPorkFiles();
+        m.creatingBeefFiles();
     }
 
 
@@ -54,7 +56,8 @@ public class Meat extends RecipeBook {
 
         //surround with try catch to avoid crashing and catch the exception instead
         try {
-            super.createFiles(super.getFileName(filepath), chickenFiles, directoryPath, fileOne, fileTwo, fileThree);
+            //use method from parent class to create files
+            createFiles(getFileName(filepath), chickenFiles, directoryPath, fileOne, fileTwo, fileThree);
         } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -64,7 +67,7 @@ public class Meat extends RecipeBook {
 
     public void creatingBeefFiles() {
 
-        addPorkRecipes();
+        addBeefRecipes();
         String fileOne = "Beef-Stir-Fry";
         String fileTwo = "Broccoli-Beef-Braids";
         String fileThree = "Chilli-Ghetti";
@@ -73,13 +76,26 @@ public class Meat extends RecipeBook {
         String filepath = "D:\\Users\\Student\\Desktop\\BeefRecipes";
         String directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\BeefFiles";
         try {
-            super.createFiles(super.getFileName(filepath), porkFiles, directoryPath, fileOne, fileTwo, fileThree);
+            createFiles(getFileName(filepath), beefFiles, directoryPath, fileOne, fileTwo, fileThree);
         } catch (InterruptedException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void creatingPorkFiles() {
+        addPorkRecipes();
+        String fileOne = "Creamy-Garlic-Pork-Chops";
+        String fileTwo = "Garlic-Butter-Pork-Bites";
+        String fileThree =  "Mongolian-Pork";
+
+        String filepath = "D:\\Users\\Student\\Desktop\\PorkRecipes";
+        String directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\PorkFiles";
+
+        try {
+            createFiles(getFileName(filepath), porkFiles, directoryPath, fileOne, fileTwo, fileThree);
+        } catch (InterruptedException | IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

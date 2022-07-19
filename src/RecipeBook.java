@@ -46,6 +46,7 @@ public class RecipeBook {
             //declare array to grab return value from read recipes method
             String[] array;
             try {
+                //adding files from my directory to directory created in intelliJ
                 File f = new File(filePath + "\\" + getFileName);
                 FileWriter writer = new FileWriter(f);
                 BufferedWriter output = new BufferedWriter(writer);
@@ -55,8 +56,9 @@ public class RecipeBook {
                 if (getFileName.contains(fileNameOne)) {
                     //reassign value of index to corresponding file recipe
                     index = 0;
-                    //reassign array to
+                    //reassign array to method
                     array = readRecipes(selectingRecipesToRead(recipeList, index));
+                    //use for each to print every line of the file to the corresponding recipe
                     for (String str : array) {
                         output.write(str);
                         output.newLine();

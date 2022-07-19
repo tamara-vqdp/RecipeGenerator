@@ -5,7 +5,7 @@ public class Main {
 
     private final Scanner scanner = new Scanner(System.in);
     private String input;
-    private Meat readMeatRecipes = new Meat();
+    private Meat  readMeatRecipes = new Meat();
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
