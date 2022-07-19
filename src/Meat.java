@@ -9,12 +9,6 @@ public class Meat extends RecipeBook {
     private ArrayList<File> porkFiles = new ArrayList<>();
 
 
-    public static void main(String[] args) {
-        Meat m = new Meat();
-        m.creatingChickenFiles();
-        m.creatingPorkFiles();
-        m.creatingBeefFiles();
-    }
 
 
     public void addChickenRecipes() {
