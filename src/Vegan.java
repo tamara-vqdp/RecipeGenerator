@@ -18,12 +18,6 @@ public class Vegan extends RecipeBook {
     public String fileThree;
 
 
-    public static void main(String[] args) {
-        Vegan v = new Vegan();
-        v.creatingVeganFiles();
-    }
-
-
     public void addVeganFiles() {
         veganFiles.add(new File("D:\\Users\\Student\\Desktop\\VeganRecipes\\Caprese-Couscous"));
         veganFiles.add(new File("D:\\Users\\Student\\Desktop\\VeganRecipes\\Puff-Pastry-Vegetable-Tart"));

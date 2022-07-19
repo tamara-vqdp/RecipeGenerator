@@ -5,9 +5,6 @@ import java.util.Random;
 public class RecipeBook {
 
 
-
-
-
     public File[] getFileName(String file) {
 
         //get the pathname of any file directory
@@ -46,7 +43,7 @@ public class RecipeBook {
             //declare array to grab return value from read recipes method
             String[] array;
             try {
-                //adding files from my directory to directory created in intelliJ
+                //adding files from my computer directory to directory created in intelliJ
                 File f = new File(filePath + "\\" + getFileName);
                 FileWriter writer = new FileWriter(f);
                 BufferedWriter output = new BufferedWriter(writer);
@@ -58,6 +55,7 @@ public class RecipeBook {
                     //reassign array to method
                     array = readRecipes(selectingRecipesToRead(recipeList, index));
                     //use for each to print every line of the file to the corresponding recipe
+                    //then write these lines to the files created
                     for (String str : array) {
                         output.write(str);
                         output.newLine();
@@ -94,6 +92,7 @@ public class RecipeBook {
 
     public String selectingRecipesToRead(ArrayList<File> recipes, int index) {
 
+        //select file from each array list created in the classes, each index will have a file
         String fileSelection;
         fileSelection = String.valueOf(recipes.get(index));
 
@@ -104,6 +103,7 @@ public class RecipeBook {
     //this method will then be used to write to the files created
     public String[] readRecipes(String selectedFile) throws IOException {
 
+        //files will be read into an arraylist of strings
         ArrayList<String> listOfStrings
                 = new ArrayList<>();
 
@@ -111,13 +111,14 @@ public class RecipeBook {
 
         String line = br.readLine();
         while (line != null) {
-
+            //each line will be added to arraylist line by line
             listOfStrings.add(line);
             line = br.readLine();
 
 
         }
 
+        //convert arraylist to array to easily be read
         String[] array
                 = listOfStrings.toArray(new String[0]);
 
@@ -148,14 +149,17 @@ public class RecipeBook {
 
     public void readRandomRecipes(String selectedFile) throws IOException {
 
+        //create array list to transfer lines read
         ArrayList<String> list
                 = new ArrayList<>();
-
+        //Reading text from a character-input stream
+        //selected file will be variable from randomFile method
         BufferedReader br = new BufferedReader(new FileReader(selectedFile));
 
         String line = br.readLine();
         while (line != null) {
-
+            //random file will then be read line by line
+            //each line will be added to the arraylist
            list.add(line);
            line = br.readLine();
 
@@ -163,8 +167,11 @@ public class RecipeBook {
 
         }
 
+        //convert array list to an array for easier readability
         String[] array
                 = list.toArray(new String[0]);
+
+        //prints out array contents line by line
 
         for(String str : array) {
             System.out.println(str);

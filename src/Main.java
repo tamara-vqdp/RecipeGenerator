@@ -21,12 +21,15 @@ public class Main {
 
     public void initialiseApp() throws InterruptedException, IOException {
 
+        //thread sleeps added throughout to display content in a smoother way
+
         System.out.println("\n");
         System.out.println("====== Initialising App..... ======");
         Thread.sleep(700);
         System.out.println("====== Please Wait.........  ======");
         Thread.sleep(700);
         System.out.println("====== Creating Files..... ======");
+        //calling createfile methods from each class 
         meatRecipes.creatingChickenFiles();
         meatRecipes.creatingBeefFiles();
         meatRecipes.creatingPorkFiles();

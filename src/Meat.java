@@ -14,6 +14,8 @@ public class Meat extends RecipeBook {
     public String fileTwo;
     public String fileThree;
 
+
+    //manually adding files from computer directory to arraylist
     public void addChickenRecipes() {
 
         //adding new files to chicken files array
@@ -96,7 +98,7 @@ public class Meat extends RecipeBook {
 
     }
 
-    //call parent
+    //call parent method, use directory path from folder created in intelliJ
     public void getRandomChickenRecipes() {
 
         directoryPath = "C:\\Users\\Student\\IdeaProjects\\RecipeGenerator\\.idea\\ChickenFiles";

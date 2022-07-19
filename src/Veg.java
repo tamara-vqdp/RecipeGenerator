@@ -12,11 +12,6 @@ public class Veg extends RecipeBook{
     public String fileTwo;
     public String fileThree;
 
-    public static void main(String[] args) {
-        Veg v = new Veg();
-        v.creatingVeggieFiles();
-    }
-
 
     public void addVeggieFiles() {
         vegFiles.add(new File("D:\\Users\\Student\\Desktop\\VegRecipes\\Easy-Chickpea-Curry"));
